@@ -1,0 +1,47 @@
+{
+  "template": "db_open_stations-*",
+  "settings": {
+    "analysis" : {
+      "analyzer" : {
+	"default" : {
+	  "type" : "keyword"
+	}
+      }
+    }
+  },
+  "mappings" : {
+    "station" : {
+      "properties": {
+	"timestamp" : { "type" : "date" },
+	"@timestamp" : { "type" : "date" },
+	"@version" : {
+	  "index" : "not_analyzed",
+	  "type" : "string"
+	},
+	"EVA_NR": { "type": "long" },
+	"DS100": {
+	  "type": "string",
+	  "index" : "analyzed"
+	},
+	"NAME": {
+	  "index" : "not_analyzed",
+	  "type": "string"
+	},
+	"VERKEHR": {
+	  "index" : "analyzed",
+	  "type": "string"
+	},
+	"year": { "type": "integer" },
+	"month": { "type": "integer" },
+	"location": {
+	  "type": "object",
+	  "properties": {
+	    "point": { "type": "geo_point" },
+	    "latitude": { "type": "double" },
+	    "longitude": { "type": "double" }
+	  }
+	}
+      }
+    }
+  }
+}
